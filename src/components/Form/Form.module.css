@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
