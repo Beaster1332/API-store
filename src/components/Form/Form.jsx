@@ -20,7 +20,7 @@ const Form = (props) => {
     }
 
     if (props.isAuth) {
-        return <Navigate to={'/profile'} />
+        return <Navigate to={'/'} />
     } else {
         return (
             <div className={classes.formContainer}>
