@@ -31,16 +31,24 @@ export const loginUserAC = (login, password) => ({ type: LOGIN_USER, data: { log
 export const logoutUserAC = () => ({ type: LOGOUT_USER });
 
 export const loginUserTC = (login, password) => {
-    return dispatch => {
-        fetch('https://fakestoreapi.com/auth/login', {
+    return async dispatch => {
+        await fetch('https://fakestoreapi.com/auth/login', {
             method: 'POST',
+            credentials: 'omit', // Помогает решить проблему с куки !*КОСТЫЛЬ*!
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 username: "mor_2314",
                 password: "83r5^_"
             })
         })
             .then(res => res.json())
-            .then(json => dispatch(loginUserAC(json)))
+            .then(json => {
+                dispatch(loginUserAC(login, password));
+                localStorage.setItem('token', json.token);
+            })
+
     }
 }
 

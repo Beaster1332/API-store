@@ -14,15 +14,14 @@ const Form = (props) => {
         mode: 'onBlur'
     });
 
-    let onSubmit = ({ login, password }) => {
+    const onSubmit = ({ login, password }) => {
         props.loginUser(login, password);
         reset();
     }
 
-    if (props.isAuth) {
-        return <Navigate to={'/'} />
-    } else {
-        return (
+    return props.isAuth
+        ? <Navigate to={'/content'} />
+        : (
             <div className={classes.formContainer}>
                 <form
                     onSubmit={handleSubmit(onSubmit)}
@@ -83,7 +82,6 @@ const Form = (props) => {
                 </form>
             </div>
         )
-    }
 }
 
 export default Form;
